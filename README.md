@@ -1,4 +1,4 @@
-![audio](https://github.com/toleda/audio_RealtekALC/blob/master/sound.png)
+![audio](https://github.com/Noctem/audio_CloverALC/raw/master/sound.png)
 # audio\_cloverALC
 Realtek ALC/Desktop: 269(1), 283(1), 885, 887, 888, 892, 898 and 1150 on board audio  (1) BRIX/NUC only
 Supports OS X: 10.13, 10.12, 10.11, 10.10, 10.9 and 10.8
@@ -23,7 +23,7 @@ Clover version of Piker Alpha/AppleHDA8Series.sh. The script adds AppleHDA.kext 
 **A. Installation**
 
 1. Open Terminal
-2. `git clone https://github.com/toleda/audio_CloverALC.git`
+2. `git clone https://github.com/Noctem/audio_CloverALC.git`
 3. `cd audio_CloverALC`
 4. `./audio_cloverALC.sh`
 
