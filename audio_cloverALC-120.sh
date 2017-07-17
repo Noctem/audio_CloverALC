@@ -44,7 +44,7 @@ gFile="audio_cloverALC-120.sh"
 echo " "
 echo "Agreement"
 echo "The audio_cloverALC script is for personal use only. Do not distribute"
-echo "the patch, any or all of the files or the resulting patched AppleHDA.kext" 
+echo "the patch, any or all of the files or the resulting patched AppleHDA.kext"
 echo "for any reason without permission. The audio_cloverALC script is"
 echo "provided as is and without any kind of warranty."
 echo " "
@@ -103,9 +103,9 @@ if [ $gDebug = 2 ]; then
 # do
 # read -p "OK (y/n): " choice3
 # case "$choice3" in
-# 	[yY]* ) break;;
-# 	[nN]* ) exit;;
-# 	* ) echo "Try again...";;
+#     [yY]* ) break;;
+#     [nN]* ) exit;;
+#     * ) echo "Try again...";;
 # esac
 # done
 fi
@@ -316,7 +316,7 @@ if [ $gRealtekALC = 1 ]; then
         esac
         done
         ;;
-    
+
     esac
     break
     ;;
@@ -380,9 +380,9 @@ if [ $gEFI = 1 ]; then
         case $gSysName in
 
         "Sierra"|"El Capitan" )
-	    echo $gSID > /tmp/gsid.txt
-            if [[ $(cat /tmp/gsid.txt | grep -c "disabled") = 0 ]]; then
-            rm -R /tmp/gsid.txt 
+        echo $gSID > /tmp/gsid.txt
+        if [[ $(cat /tmp/gsid.txt | grep -c "disabled") = 0 ]]; then
+            rm -R /tmp/gsid.txt
             echo "$gSID"
             echo ""
             echo "NOK to patch"
@@ -391,10 +391,10 @@ if [ $gEFI = 1 ]; then
             echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
             exit 1
         else
-            rm -R /tmp/gsid.txt            
-	     echo "$gSID"
+            rm -R /tmp/gsid.txt
+            echo "$gSID"
             echo ""
-	     echo "OK to patch"
+            echo "OK to patch"
         fi
         ;;
 
@@ -431,12 +431,12 @@ else
 # confirm Clover Legacy install
     gCloverDirectory=/Volumes/"$gStartupDisk"/EFI/CLOVER
     if [ -d "$gCloverDirectory" ]; then
-	    echo "$gStartupDisk/EFI folder found"
+        echo "$gStartupDisk/EFI folder found"
     else echo "$gStartupDisk/EFI not found"
-	    echo "EFI/CLOVER folder not available to install audio"
-	    echo "No system files were changed"
-	    echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
-	    exit 1
+        echo "EFI/CLOVER folder not available to install audio"
+        echo "No system files were changed"
+        echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
+        exit 1
     fi
 
     while true
@@ -453,9 +453,9 @@ else
             case $gSysName in
 
             "Sierra"|"El Capitan" )
-	    	echo $gSID > /tmp/gsid.txt
-        	if [[ $(cat /tmp/gsid.txt | grep -c "disabled") = 0 ]]; then
-            	rm -R /tmp/gsid.txt 
+            echo $gSID > /tmp/gsid.txt
+            if [[ $(cat /tmp/gsid.txt | grep -c "disabled") = 0 ]]; then
+                rm -R /tmp/gsid.txt
                 echo "$gSID"
                 echo ""
                 echo "NOK to patch"
@@ -464,10 +464,10 @@ else
                 echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
                 exit 1
             else
-            	rm -R /tmp/gsid.txt                
-		echo "$gSID"
-               echo ""
-		echo "OK to patch"
+                rm -R /tmp/gsid.txt
+                echo "$gSID"
+                echo ""
+                echo "OK to patch"
             fi
             ;;
 
@@ -600,7 +600,7 @@ if [ $gDebug = 2 ]; then
     echo "HDEF/Audio ID: success"
 fi
 
-# verify native s/l/e/applehda.kext 
+# verify native s/l/e/applehda.kext
 if [ $gMake = 0 ]; then
 
     if [[ $(perl -le "print scalar grep /\x8b\x19\xd4\x11/, <>;" $gHDAContentsDirectory/MacOS/AppleHDA) = 0 ]]; then
@@ -964,14 +964,14 @@ fi
 case $gAudioid in
 # 0|1|2|3 ) gAudioidvalid=y;;
 1|2|3 ) gAudioidvalid=y;;
-* )  
+* )
 while true
 do
 read -p "Audio ID: $gAudioid is not supported, continue (y/n): " choice9
 case "$choice9" in
-	[yY]* ) gAudioid=0; gAudioidvalid=n break;;
-	[nN]* ) echo "No system files were changed"; exit;;
-	* ) echo "Try again..."
+    [yY]* ) gAudioid=0; gAudioidvalid=n break;;
+    [nN]* ) echo "No system files were changed"; exit;;
+    * ) echo "Try again..."
 ;;
 esac
 done
@@ -1029,7 +1029,7 @@ if [ $gCloverALC = 1 ]; then
 # read -p "Select Audio ID? (0, 1, 2 or 3): " choice6
         read -p "Select Audio ID: " choice6
         case "$choice6" in
-#	0* ) gAudioid=0; break;;
+#           0* ) gAudioid=0; break;;
             1* ) gAudioid=1; break;;
             2* ) gAudioid=2; if [ $gCodec = 885 ]; then echo "ID: 2 n/a, try again..."; else break; fi;;
             3* ) gAudioid=3; valid=y;
@@ -1228,7 +1228,7 @@ if [ $(sudo /usr/libexec/PlistBuddy -c "Print ':SystemParameters:InjectKexts'" /
     sudo /usr/libexec/PlistBuddy -c "Set :SystemParameters:InjectKexts YES" /tmp/config.plist
 fi
 
-# debug 
+# debug
 if [ $gDebug = 2 ]; then
     echo "After edit. :SystemParameters:InjectKexts; = $(sudo /usr/libexec/PlistBuddy -c "Print ':SystemParameters:InjectKexts:'" /tmp/config.plist)"
 fi

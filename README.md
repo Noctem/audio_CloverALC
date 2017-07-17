@@ -1,10 +1,10 @@
 ![audio](https://github.com/toleda/audio_RealtekALC/blob/master/sound.png)
 #audio\_cloverALC
-Realtek ALC/Desktop: 269(1), 283(1), 885, 887, 888, 892, 898 and 1150 on board audio  (1) BRIX/NUC only  
-Supports OS X: 10.12, 10.11, 10.10, 10.9 and 10.8  
+Realtek ALC/Desktop: 269(1), 283(1), 885, 887, 888, 892, 898 and 1150 on board audio  (1) BRIX/NUC only
+Supports OS X: 10.12, 10.11, 10.10, 10.9 and 10.8
 Native AppleHDA/Persistent
 
-**OS X/Clover patched AppleHDA Realtek ALC Audio**  
+**OS X/Clover patched AppleHDA Realtek ALC Audio**
 
 The Clover/kext patched Realtek ALC method enables OS X AppleHDA onboard audio with or without HDMI and DP audio. The script adds codec specific layout and platform files and injects binary patch and pin configuration data to the native installed AppleHDA.kext.
 
@@ -27,7 +27,7 @@ Clover version of Piker Alpha/AppleHDA8Series.sh. The script adds AppleHDA.kext 
 **A. Installation**
 
 1.  Clover/kext patched AppleHDA
-    1.  [audio\_cloverALC-120.command](https://github.com/toleda/audio_CloverALC/blob/master/audio_cloverALC-120.command.zip) (select View Raw) 
+    1.  [audio\_cloverALC-120.command](https://github.com/toleda/audio_CloverALC/blob/master/audio_cloverALC-120.command.zip) (select View Raw)
     or [audio\_pikeralphaALC-120.command](https://github.com/toleda/audio_CloverALC/blob/master/audio_pikeralphaALC-120.command.zip) (select View Raw)
     2.  Double click: Downloads/audio_cloverALC-120.command
     3.  Password:
@@ -52,7 +52,7 @@ Clover version of Piker Alpha/AppleHDA8Series.sh. The script adds AppleHDA.kext 
 **C. Requirements**
 
 1.  OS X Versions (+ all)
-    1.  10.12+/Sierra 
+    1.  10.12+/Sierra
     2.  10.11+/El Capitan
     2.  10.10+/Yosemite
     3.  10.9+/Mavericks
@@ -84,12 +84,12 @@ Clover version of Piker Alpha/AppleHDA8Series.sh. The script adds AppleHDA.kext 
     9.  1150
 
 2.  Supported Audio IDs
-    1. Audio ID: 1 - supports 269, 283, 885, 887, 888, 889, 892, 898, 1150  
+    1. Audio ID: 1 - supports 269, 283, 885, 887, 888, 889, 892, 898, 1150
         Realtek ALC audio (default, 1/2/3/5/6 motherboard audio ports)
 
-    2. Audio ID: 2 - supports 887, 888, 889, 892, 898, 1150  
+    2. Audio ID: 2 - supports 887, 888, 889, 892, 898, 1150
         Realtek ALC/5.1 surround sound (3 motherboard audio ports)
-    3. Audio ID: 3 - supports 887, 888, 889, 892, 898 
+    3. Audio ID: 3 - supports 887, 888, 889, 892, 898
         HD3000/HD4000 HDMI audio with Realtek ALC audio
 
 **E. More Information**
@@ -97,24 +97,24 @@ Clover version of Piker Alpha/AppleHDA8Series.sh. The script adds AppleHDA.kext 
 1. [Realtek ALC AppleHDA](https://github.com/toleda/audio_ALC_guides/blob/master/Realtek%20ALC%20AppleHDA.pdf)
 
     1. Installation
-    2. Details/Support  
+    2. Details/Support
     3. Troubleshooting
 2. [Realtek ALC guides](https://github.com/toleda/audio_ALC_guides)
-	1. Enhancemants
-		1. Customization
-		2. Surround Sound
-	2. Troubleshooting
-		1. No Audio Devices
-		2. No Sound
-		3. No Audio After Sleep/Wake
-	3. Utilities
-		1. Identify Audio Codec
-		2. Restore native AppleHDA
+    1. Enhancemants
+        1. Customization
+        2. Surround Sound
+    2. Troubleshooting
+        1. No Audio Devices
+        2. No Sound
+        3. No Audio After Sleep/Wake
+    3. Utilities
+        1. Identify Audio Codec
+        2. Restore native AppleHDA
 
 **F. [Problem Reporting](https://github.com/toleda/audio_ALC_guides/blob/master/Problem%20Reporting.md)**
 
-1.	Problem Reporting/Post to
-2.	Problem Reporting/Attached requested files
+1. Problem Reporting/Post to
+2. Problem Reporting/Attached requested files
 
 Credit
 THe KiNG, bcc9, RevoGirl, PikeRAlpha, SJ\_UnderWater, RehabMan, TimeWalker75a, lisai9093, [abxite](http://applelife.ru/threads/patchim-applehda-s-pomoschju-zagruzchika.39406/#post-353647)
