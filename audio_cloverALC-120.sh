@@ -1564,7 +1564,6 @@ esac
 esac
 
 sudo rm -R /tmp/realtekALC.kext
-sudo rm -R /tmp/__MACOSX
 
 # exit if error
 if [ "$?" != "0" ]; then

@@ -1,6 +1,6 @@
 #!/bin/sh
 # Maintained by: toleda for: github.com/toleda/audio_cloverALC
-gFile="audio_cloverALC-130.command_v0.1"
+gFile="audio_cloverALC-130.sh"
 # gFile="audio_pikeralphaALC-120.command_vv0.1"
 # Credit: bcc9, RevoGirl, PikeRAlpha, SJ_UnderWater, RehabMan, TimeWalker75a, lisai9093
 #
@@ -1249,16 +1249,9 @@ fi
 
 fi
 
-echo "Download kext patches"
+echo "Copy kext patches"
 
-if [ $gBetaALC = 0 ]; then
-gDownloadLink="https://raw.githubusercontent.com/toleda/audio_cloverALC/master/config-audio_cloverALC.plist.zip"
-else
-gDownloadLink="https://raw.githubusercontent.com/toleda/audio_alc_test/master/config-audio_cloverALC.plist.zip"
-fi
-
-sudo curl -o "/tmp/config-audio_cloverALC.plist.zip" $gDownloadLink
-unzip -qu "/tmp/config-audio_cloverALC.plist.zip" -d "/tmp/"
+cp config-audio_cloverALC.plist /tmp/
 
 # add KernelAndKextPatches/KextsToPatch codec patches
 # remove existing audio patches
@@ -1465,7 +1458,7 @@ esac
 sudo rm /tmp/ktp.plist
 sudo rm /tmp/config.plist
 sudo rm /tmp/config-audio_cloverALC.plist
-sudo rm /tmp/config-audio_cloverALC.plist.zip
+
 
 # echo "config.plist patching finished."
 
@@ -1474,12 +1467,7 @@ if [ $gPikerAlphaALC = 1 ]; then
 # download AppleHDA8Series.sh to /tmp/
 echo "Download Piker-Alpha/AppleHDA8Series.sh"
 
-curl -o /tmp/AppleHDA8Series.zip https://codeload.github.com/Piker-Alpha/AppleHDA8Series.sh/zip/master
-if [ -d /tmp/AppleHDA8Series ]; then
-    sudo rm -R /tmp/AppleHDA8Series
-fi
-unzip -qu /tmp/AppleHDA8Series.zip -d /tmp/
-mv /tmp/AppleHDA8Series.sh-master /tmp/AppleHDA8Series
+curl -o /tmp/AppleHDA8Series.sh https://raw.githubusercontent.com/Piker-Alpha/AppleHDA8Series.sh/master/AppleHDA8Series.sh
 
 # remove installed AppleHDAxxx.kext
 if [ -d "$gLibraryDirectory/AppleHDA$gCodec.kext" ]; then
@@ -1488,16 +1476,15 @@ fi
 
 # run AppleHDA8Series.sh
 echo "Install $gLibraryDirectory/AppleHDA$gCodec.kext"
-chmod +x /tmp/AppleHDA8Series/AppleHDA8Series.sh
-sh /tmp/AppleHDA8Series/AppleHDA8Series.sh -a $gCodec -l $gAudioid -d $gLibraryDirectory
+chmod +x /tmp/AppleHDA8Series.sh
+sh /tmp/AppleHDA8Series.sh -a $gCodec -l $gAudioid -d $gLibraryDirectory
 
 # exit if error
 if [ "$?" != "0" ]; then
     echo Error: AppleHDA8Series.sh
     echo "No system files were changed"
     echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
-    sudo rm /tmp/AppleHDA8Series.zip
-    sudo rm -R /tmp/AppleHDA8Series
+    sudo rm /tmp/AppleHDA8Series.sh
     sudo rm /tmp/ALC$gCodec.zip
     sudo rm -R /tmp/$gCodec
     sudo rm /tmp/ConfigData-ALC$gCodec.xml
@@ -1506,8 +1493,7 @@ if [ "$?" != "0" ]; then
 fi
 
 # clean up
-sudo rm /tmp/AppleHDA8Series.zip
-sudo rm -R /tmp/AppleHDA8Series
+sudo rm /tmp/AppleHDA8Series.sh
 sudo rm /tmp/ALC$gCodec.zip
 sudo rm -R /tmp/$gCodec
 sudo rm /tmp/ConfigData-ALC$gCodec.xml
@@ -1521,15 +1507,9 @@ if [ -d "$gCloverDirectory/$gSysFolder" ]; then
     gSysFolder=kexts/Other
 fi
 
-if [ $gBetaALC = 0 ]; then
-    echo "Download config kext and install ..."
-    gDownloadLink="https://raw.githubusercontent.com/toleda/audio_cloverALC/master/realtekALC.kext.zip"
-else
-    gDownloadLink="https://raw.githubusercontent.com/toleda/audio_alc_test/master/realtekALC.kext.zip"
-fi
 
-sudo curl -o "/tmp/realtekALC.kext.zip" $gDownloadLink
-unzip -qu "/tmp/realtekALC.kext.zip" -d "/tmp/"
+echo "Copying config kext..."
+cp -R realtekALC.kext /tmp/
 
 
 # install realtekALC.kext
@@ -1585,9 +1565,7 @@ esac
 
 esac
 
-sudo rm /tmp/realtekALC.kext.zip
 sudo rm -R /tmp/realtekALC.kext
-sudo rm -R /tmp/__MACOSX
 
 # exit if error
 if [ "$?" != "0" ]; then
