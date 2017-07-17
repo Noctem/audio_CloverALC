@@ -233,7 +233,7 @@ if [ $gRealtekALC = 1 ]; then
         "High Sierra"|"Sierra"|"El Capitan" )
         echo $gSID > /tmp/gsid.txt
         if [[ $(cat /tmp/gsid.txt | grep -c "disabled") = 0 ]]; then
-            rm -R /tmp/gsid.txt
+            rm /tmp/gsid.txt
             echo "$gSID"
             echo ""
             echo "NOK to patch"
@@ -242,7 +242,7 @@ if [ $gRealtekALC = 1 ]; then
             echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
             exit 1
         else
-            rm -R /tmp/gsid.txt
+            rm /tmp/gsid.txt
             echo "$gSID"
             echo ""
             echo "OK to patch"
@@ -251,7 +251,7 @@ if [ $gRealtekALC = 1 ]; then
 
         "Yosemite" )
         if [[ $(cat /tmp/org.chameleon.Boot.txt | grep -c "kext-dev-mode=1") = 0 ]]; then
-            rm -R /tmp/org.chameleon.Boot.txt
+            rm /tmp/org.chameleon.Boot.txt
             echo "Kernel Flags = kext-dev-mode=1 not found; patching not possible"
             echo "Add org.chameleon.Boot.plist/Kernel Flags = kext-dev-mode=1 and restart"
             echo "No system files were changed"
@@ -262,7 +262,7 @@ if [ $gRealtekALC = 1 ]; then
         fi
         ;;
         esac
-        rm -R /tmp/org.chameleon.Boot.txt
+        rm /tmp/org.chameleon.Boot.txt
 
         else
 # osmosis/other
@@ -278,7 +278,7 @@ if [ $gRealtekALC = 1 ]; then
 
         echo $gSID > /tmp/gsid.txt
         if [[ $(cat /tmp/gsid.txt | grep -c "disabled") = 0 ]]; then
-            rm -R /tmp/gsid.txt
+            rm /tmp/gsid.txt
             echo "$gSID"
             echo ""
             echo "NOK to patch"
@@ -287,7 +287,7 @@ if [ $gRealtekALC = 1 ]; then
             echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
             exit 1
         else
-        rm -R /tmp/gsid.txt
+        rm /tmp/gsid.txt
         echo "$gSID"
         echo ""
         echo "OK to patch"
@@ -382,7 +382,7 @@ if [ $gEFI = 1 ]; then
         "High Sierra"|"Sierra"|"El Capitan" )
         echo $gSID > /tmp/gsid.txt
         if [[ $(cat /tmp/gsid.txt | grep -c "disabled") = 0 ]]; then
-            rm -R /tmp/gsid.txt
+            rm /tmp/gsid.txt
             echo "$gSID"
             echo ""
             echo "NOK to patch"
@@ -391,7 +391,7 @@ if [ $gEFI = 1 ]; then
             echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
             exit 1
         else
-            rm -R /tmp/gsid.txt
+            rm /tmp/gsid.txt
             echo "$gSID"
             echo ""
             echo "OK to patch"
@@ -400,7 +400,7 @@ if [ $gEFI = 1 ]; then
 
         "Yosemite" )
         if [[ $(cat /tmp/config.txt | grep -c "kext-dev-mode=1") = 0 ]]; then
-            rm -R /tmp/config.txt
+            rm /tmp/config.txt
             echo "Boot/Arguments/kext-dev-mode=1 not found; patching not possible"
             echo "Add config.plist/Boot/Arguments/kext-dev-mode=1 and restart"
             echo "No system files were changed"
@@ -413,10 +413,10 @@ if [ $gEFI = 1 ]; then
 
         esac
 
-        rm -R /tmp/config.txt
+        rm /tmp/config.txt
         cp -p "$gCloverDirectory/config.plist" "/tmp/config.plist"
         if [ -f "$gCloverDirectory/config-backup.plist" ]; then
-            rm -R "$gCloverDirectory/config-backup.plist"
+            rm "$gCloverDirectory/config-backup.plist"
         fi
         cp -p "$gCloverDirectory/config.plist" "$gCloverDirectory/config-backup.plist"
     else
@@ -455,7 +455,7 @@ else
             "High Sierra"|"Sierra"|"El Capitan" )
             echo $gSID > /tmp/gsid.txt
             if [[ $(cat /tmp/gsid.txt | grep -c "disabled") = 0 ]]; then
-                rm -R /tmp/gsid.txt
+                rm /tmp/gsid.txt
                 echo "$gSID"
                 echo ""
                 echo "NOK to patch"
@@ -464,7 +464,7 @@ else
                 echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
                 exit 1
             else
-                rm -R /tmp/gsid.txt
+                rm /tmp/gsid.txt
                 echo "$gSID"
                 echo ""
                 echo "OK to patch"
@@ -473,7 +473,7 @@ else
 
             "Yosemite" )
             if [[ $(cat /tmp/config.txt | grep -c "kext-dev-mode=1") = 0 ]]; then
-                rm -R /tmp/config.txt
+                rm /tmp/config.txt
                 echo "Boot/Arguments/kext-dev-mode=1 not found; patching not possible"
                 echo "Add config.plist/Boot/Arguments/kext-dev-mode=1 and restart"
                 echo "No system files were changed"
@@ -488,7 +488,7 @@ else
 
             cp -p "$gCloverDirectory/config.plist" "/tmp/config.plist"
             if [ -f "$gCloverDirectory/config-backup.plist" ]; then
-                rm -R "$gCloverDirectory/config-backup.plist"
+                rm "$gCloverDirectory/config-backup.plist"
             fi
             cp -p "$gCloverDirectory/config.plist" "$gCloverDirectory/config-backup.plist"
         else
@@ -583,12 +583,12 @@ if [[ $(cat /tmp/HDEF.txt | grep -c "HDEF@1") != 0 ]]; then
     gLayoutidioreg=$(cat /tmp/HDEF.txt | grep layout-id | sed -e 's/.*<//' -e 's/>//')
     gLayoutidhex="0x${gLayoutidioreg:6:2}${gLayoutidioreg:4:2}${gLayoutidioreg:2:2}${gLayoutidioreg:0:2}"
     gAudioid=$((gLayoutidhex))
-    sudo rm -R /tmp/HDEF.txt
+    sudo rm /tmp/HDEF.txt
 else
     echo "Error: no IOReg/HDEF; BIOS/audio/disabled or ACPI problem"
     echo "No system files were changed"
     echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
-    sudo rm -R /tmp/HDEF.txt
+    sudo rm /tmp/HDEF.txt
 exit 1
 fi
 
@@ -923,7 +923,7 @@ case "$gCodec" in
            gController=1
        fi
    fi
-   sudo rm -R /tmp/HDAU.txt
+   sudo rm /tmp/HDAU.txt
 
    ioreg -rw 0 -p IODeviceTree -n B0D3 > /tmp/B0D3.txt
 
@@ -934,7 +934,7 @@ case "$gCodec" in
             gController=1
         fi
    fi
-   sudo rm -R /tmp/B0D3.txt
+   sudo rm /tmp/B0D3.txt
 
    ;;
 
@@ -1238,10 +1238,10 @@ if [ "$?" != "0" ]; then
     echo Error: config.plst edit failed
     echo “Original config.plist restored”
     sudo cp -X $gCloverDirectory/config-backup.plist $gCloverDirectory/config.plist
-    sudo rm -R /tmp/ktp.plist
-    sudo rm -R /tmp/config.plist
-    sudo rm -R /tmp/config-audio_cloverALC.plist
-    sudo rm -R /tmp/$gCodecName.zip
+    sudo rm /tmp/ktp.plist
+    sudo rm /tmp/config.plist
+    sudo rm /tmp/config-audio_cloverALC.plist
+    sudo rm /tmp/$gCodecName.zip
     sudo rm -R /tmp/$gCodecName
     echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
     exit 1
@@ -1438,10 +1438,10 @@ if [ "$?" != "0" ]; then
     echo Error: config.plst edit failed
     echo “Original config.plist restored”
     sudo cp -X $gCloverDirectory/config-backup.plist $gCloverDirectory/config.plist
-    sudo rm -R /tmp/ktp.plist
-    sudo rm -R /tmp/config.plist
-    sudo rm -R /tmp/config-audio_cloverALC.plist
-    sudo rm -R /tmp/$gCodecName.zip
+    sudo rm /tmp/ktp.plist
+    sudo rm /tmp/config.plist
+    sudo rm /tmp/config-audio_cloverALC.plist
+    sudo rm /tmp/$gCodecName.zip
     sudo rm -R /tmp/$gCodecName
     echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
     exit 1
@@ -1462,10 +1462,10 @@ case $gDebug in
 esac
 
 # cleanup /tmp
-sudo rm -R /tmp/ktp.plist
-sudo rm -R /tmp/config.plist
-sudo rm -R /tmp/config-audio_cloverALC.plist
-sudo rm -R /tmp/config-audio_cloverALC.plist.zip
+sudo rm /tmp/ktp.plist
+sudo rm /tmp/config.plist
+sudo rm /tmp/config-audio_cloverALC.plist
+sudo rm /tmp/config-audio_cloverALC.plist.zip
 
 # echo "config.plist patching finished."
 
@@ -1496,22 +1496,22 @@ if [ "$?" != "0" ]; then
     echo Error: AppleHDA8Series.sh
     echo "No system files were changed"
     echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
-    sudo rm -R /tmp/AppleHDA8Series.zip
+    sudo rm /tmp/AppleHDA8Series.zip
     sudo rm -R /tmp/AppleHDA8Series
-    sudo rm -R /tmp/ALC$gCodec.zip
+    sudo rm /tmp/ALC$gCodec.zip
     sudo rm -R /tmp/$gCodec
-    sudo rm -R /tmp/ConfigData-ALC$gCodec.xml
-    sudo rm -R /tmp/HDEF.txt
+    sudo rm /tmp/ConfigData-ALC$gCodec.xml
+    sudo rm /tmp/HDEF.txt
     exit 1
 fi
 
 # clean up
-sudo rm -R /tmp/AppleHDA8Series.zip
+sudo rm /tmp/AppleHDA8Series.zip
 sudo rm -R /tmp/AppleHDA8Series
-sudo rm -R /tmp/ALC$gCodec.zip
+sudo rm /tmp/ALC$gCodec.zip
 sudo rm -R /tmp/$gCodec
-sudo rm -R /tmp/ConfigData-ALC$gCodec.xml
-sudo rm -R /tmp/HDEF.txt
+sudo rm /tmp/ConfigData-ALC$gCodec.xml
+sudo rm /tmp/HDEF.txt
 
 else        # PikerAlphaALC
 # determine kexts/folder
@@ -1585,7 +1585,7 @@ esac
 
 esac
 
-sudo rm -R /tmp/realtekALC.kext.zip
+sudo rm /tmp/realtekALC.kext.zip
 sudo rm -R /tmp/realtekALC.kext
 sudo rm -R /tmp/__MACOSX
 
@@ -1604,7 +1604,7 @@ case $gDebug in
 
 # install codec specific files
     if [ -d "$gHDAContentsDirectory/Resources/*.zml.zlib" ]; then
-    sudo rm -R "$gHDAContentsDirectory/Resources/*.zml.zlib"
+    sudo rm "$gHDAContentsDirectory/Resources/*.zml.zlib"
 # echo "System/Library/Extensions/AppleHDA.kext/ALC$gCodec zml files deleted"
     fi
 
@@ -1651,13 +1651,13 @@ case $gDebug in
 esac
 
 # remove temp files
-sudo rm -R /tmp/ALC$gCodec.zip
+sudo rm /tmp/ALC$gCodec.zip
 sudo rm -R /tmp/$gCodecName
 
 # exit if error
 if [ "$?" != "0" ]; then
     echo "Error: Installation failure"
-    sudo rm -R "$gHDAContentsDirectory/Resources/*zml.zlib"
+    sudo rm "$gHDAContentsDirectory/Resources/*zml.zlib"
     sudo touch $gExtensionsDirectory
     echo "Original S/L/E/AppleHDA.kext restored"
     echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
