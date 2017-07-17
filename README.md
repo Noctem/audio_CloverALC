@@ -109,10 +109,7 @@ Clover version of Piker Alpha/AppleHDA8Series.sh. The script adds AppleHDA.kext 
 		3. No Audio After Sleep/Wake
 	3. Utilities
 		1. Identify Audio Codec
-		2. Restore native AppleHDA  
-3. Terminal Saved Output
- 	   1.  [Clover/EFI](https://github.com/toleda/audio_CloverALC/blob/master/Terminal:audio_cloverALC-110-efi.txt)
- 	   2.  [Clover/Legacy](https://github.com/toleda/audio_CloverALC/blob/master/Terminal:audio_cloverALC-110-legacy.txt)
+		2. Restore native AppleHDA
 
 **F. [Problem Reporting](https://github.com/toleda/audio_ALC_guides/blob/master/Problem%20Reporting.md)**
 
