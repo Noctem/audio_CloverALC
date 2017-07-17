@@ -1,7 +1,7 @@
 ![audio](https://github.com/toleda/audio_RealtekALC/blob/master/sound.png)
-#audio\_cloverALC
+# audio\_cloverALC
 Realtek ALC/Desktop: 269(1), 283(1), 885, 887, 888, 892, 898 and 1150 on board audio  (1) BRIX/NUC only
-Supports OS X: 10.12, 10.11, 10.10, 10.9 and 10.8
+Supports OS X: 10.13, 10.12, 10.11, 10.10, 10.9 and 10.8
 Native AppleHDA/Persistent
 
 **OS X/Clover patched AppleHDA Realtek ALC Audio**
@@ -19,44 +19,23 @@ Clover version of Piker Alpha/AppleHDA8Series.sh. The script adds AppleHDA.kext 
 3. 7/19/15 - 283 Update
 4. 6/15/15 - 10.11 - El Capitan Realtek ALC AppleHDA.kext Initial Support
 
-**Versions: audio_cloverALC-120**
-
-1. Easy: .command, see A. Installation
-2. Bash: .sh, see B. Terminal
 
 **A. Installation**
 
-1.  Clover/kext patched AppleHDA
-    1.  [audio\_cloverALC-120.command](https://github.com/toleda/audio_CloverALC/blob/master/audio_cloverALC-120.command.zip) (select View Raw)
-    or [audio\_pikeralphaALC-120.command](https://github.com/toleda/audio_CloverALC/blob/master/audio_pikeralphaALC-120.command.zip) (select View Raw)
-    2.  Double click: Downloads/audio_cloverALC-120.command
-    3.  Password:
-    4.  Confirm Codec ALCxxx: (885, 887, 888, 889, 892, 898, 1150 only)
-    5.  Clover/Legacy: answer y to Confirm Clover Legacy Install (y/n)
-    6.  Clover Audio ID Injection (y/n):
-    7.  Use Audio ID: x (y/n):
-    8.  Optional: Terminal/Terminal Saved Output
-2.  Restart
-3.  Verify ALC onboard audio
-    1.  System Preferences/Sound/Output/select audio device
+1. Open Terminal
+2. `git clone https://github.com/toleda/audio_CloverALC.git`
+3. `cd audio_CloverALC`
+4. `./audio_cloverALC-130.sh`
 
-**B. Terminal**
-
-1.  Clover/kext patched AppleHDA
-    1. [audio\_cloverALC-120.sh](https://github.com/toleda/audio_CloverALC/blob/master/audio_cloverALC-120.sh) (select View Raw)
-    2. Terminal $ cd Downloads
-    3. Terminal $ mv audio\_cloverALC-120....command audio\_cloverALC-120....sh
-    3. Terminal $ ./audio\_cloverALC-120....sh
-    3. Same (as above)
-
-**C. Requirements**
+**B. Requirements**
 
 1.  OS X Versions (+ all)
-    1.  10.12+/Sierra
-    2.  10.11+/El Capitan
-    2.  10.10+/Yosemite
-    3.  10.9+/Mavericks
-    4.  10.8+/Mountain Lion
+    1.  10.13+/High Sierra
+    2.  10.12+/Sierra
+    3.  10.11+/El Capitan
+    4.  10.10+/Yosemite
+    5.  10.9+/Mavericks
+    6.  10.8+/Mountain Lion
 2. Boot Flags/Boot failure may result if ignored
 	1.	10.11+/Disable SIP/set, restart, install, enable SIP, restart
 		1.	CLOVER/config.plist/
@@ -70,7 +49,7 @@ Clover version of Piker Alpha/AppleHDA8Series.sh. The script adds AppleHDA.kext 
 3.  [Native AppleHDA.kext](https://github.com/toleda/audio_ALC_guides/blob/master/Restore%20native%20AppleHDA%20%5BGuide%5D.pdf)
 4.  Audio codec? See Tools 4.
 
-**D. Realtek ALCxxx** - Verify, see Tools 4.
+**C. Realtek ALCxxx** - Verify, see Tools 4.
 
 1.  Supported codecs (* Not supported with audio_pikeralpha-110)
     1.  269 (BRIX only) *
@@ -86,16 +65,14 @@ Clover version of Piker Alpha/AppleHDA8Series.sh. The script adds AppleHDA.kext 
 2.  Supported Audio IDs
     1. Audio ID: 1 - supports 269, 283, 885, 887, 888, 889, 892, 898, 1150
         Realtek ALC audio (default, 1/2/3/5/6 motherboard audio ports)
-
     2. Audio ID: 2 - supports 887, 888, 889, 892, 898, 1150
         Realtek ALC/5.1 surround sound (3 motherboard audio ports)
     3. Audio ID: 3 - supports 887, 888, 889, 892, 898
         HD3000/HD4000 HDMI audio with Realtek ALC audio
 
-**E. More Information**
+**D. More Information**
 
 1. [Realtek ALC AppleHDA](https://github.com/toleda/audio_ALC_guides/blob/master/Realtek%20ALC%20AppleHDA.pdf)
-
     1. Installation
     2. Details/Support
     3. Troubleshooting
@@ -111,7 +88,7 @@ Clover version of Piker Alpha/AppleHDA8Series.sh. The script adds AppleHDA.kext 
         1. Identify Audio Codec
         2. Restore native AppleHDA
 
-**F. [Problem Reporting](https://github.com/toleda/audio_ALC_guides/blob/master/Problem%20Reporting.md)**
+**E. [Problem Reporting](https://github.com/toleda/audio_ALC_guides/blob/master/Problem%20Reporting.md)**
 
 1. Problem Reporting/Post to
 2. Problem Reporting/Attached requested files
