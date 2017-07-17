@@ -1,23 +1,23 @@
 #!/bin/sh
 # Maintained by: toleda for: github.com/toleda/audio_cloverALC
-gFile="audio_cloverALC-120.sh"
-# gFile="audio_pikeralphaALC-120.command_v1.0f"
+gFile="audio_cloverALC-130.command_v0.1"
+# gFile="audio_pikeralphaALC-120.command_vv0.1"
 # Credit: bcc9, RevoGirl, PikeRAlpha, SJ_UnderWater, RehabMan, TimeWalker75a, lisai9093
 #
 # OS X Clover Realtek ALC Onboard Audio
 #
-# Enables OS X Realtek ALC onboard audio in 10.12, 10.11, 10.10, 10.9 and 10.8, all versions
+# Enables OS X Realtek ALC onboard audio in 10.13, 10.12, 10.11, 10.10, 10.9 and 10.8, all versions
 # 1. Supports Realtek ALC885, 887, 888, 889, 892, 898, 1150 and 1220
 # 2. Clover patched native AppleHDA.kext installed in System/Library/Extensions
 #
 # Requirements
-# 1. OS X: 10.12/10.11/10.10/10.9/10.8, all versions
+# 1. OS X: 10.13/10.12/10.11/10.10/10.9/10.8, all versions
 # 2. Native AppleHDA.kext (if not installed, run 10.x installer)
 # 3. Supported Realtek ALC on board audio codec (see above)
 # 4. Audio ID: 1, 2 or 3 Injection, see https://github.com/toleda/audio_ALCinjection
 #
 # Installation
-# 1. Double click audio_cloverALC-120.command
+# 1. Double click audio_cloverALC-130.command
 # 2. Enter password at prompt
 # 3. For Clover/EFI, EFI partition must be mounted before running script
 # 4. For Clover/Legacy, answer y to Confirm Clover Legacy Install (y/n)
@@ -34,12 +34,7 @@ gFile="audio_cloverALC-120.sh"
 # 9. Restart
 #
 # Change log:
-# v1.0f0 - 2/21/17: Add 1220 codecs, fix PlugIn, bugs
-# v1.0e0 - Not released
-# v1.0d0 - 8/24/16: Clean up, synch with realtekALC and pikeralphaALC
-# v1.0c0 - 8/16/16: Clean up
-# v1.0b0 - 8/7/16: KextTo Patch fix
-# v1.0a - 7/15/16: Initial 10.12 support
+# v0.1 - 7/5/17: Alpha 10.13 support
 
 echo " "
 echo "Agreement"
@@ -113,6 +108,11 @@ fi
 # verify system version
 case ${gSysVer} in
 
+    10.13* ) gSysName="High Sierra"
+    gSysFolder=kexts/10.13
+    gSID=$(csrutil status)
+    ;;
+
     10.12* ) gSysName="Sierra"
     gSysFolder=kexts/10.12
     gSID=$(csrutil status)
@@ -164,7 +164,7 @@ if [ $gMake = 1 ]; then
         sudo rm -R "$gExtensionsDirectory/AppleHDA.kext"
     case $gSysName in
 
-    "Sierra"|"El Capitan" )
+    "High Sierra"|"Sierra"|"El Capitan" )
     sudo cp -X $gDesktopDirectory/AppleHDA.kext $gExtensionsDirectory/AppleHDA.kext
     ;;
 
@@ -230,7 +230,7 @@ if [ $gRealtekALC = 1 ]; then
 
         case $gSysName in
 
-        "Sierra"|"El Capitan" )
+        "High Sierra"|"Sierra"|"El Capitan" )
         echo $gSID > /tmp/gsid.txt
         if [[ $(cat /tmp/gsid.txt | grep -c "disabled") = 0 ]]; then
             rm -R /tmp/gsid.txt
@@ -274,7 +274,7 @@ if [ $gRealtekALC = 1 ]; then
 
     [yY]* )
         case $gSysName in
-        "Sierra"|"El Capitan" )
+        "High Sierra"|"Sierra"|"El Capitan" )
 
         echo $gSID > /tmp/gsid.txt
         if [[ $(cat /tmp/gsid.txt | grep -c "disabled") = 0 ]]; then
@@ -379,7 +379,7 @@ if [ $gEFI = 1 ]; then
 
         case $gSysName in
 
-        "Sierra"|"El Capitan" )
+        "High Sierra"|"Sierra"|"El Capitan" )
 	    echo $gSID > /tmp/gsid.txt
             if [[ $(cat /tmp/gsid.txt | grep -c "disabled") = 0 ]]; then
             rm -R /tmp/gsid.txt 
@@ -452,7 +452,7 @@ else
             cp -p "$gCloverDirectory/config.plist" "/tmp/config.txt"
             case $gSysName in
 
-            "Sierra"|"El Capitan" )
+            "High Sierra"|"Sierra"|"El Capitan" )
 	    	echo $gSID > /tmp/gsid.txt
         	if [[ $(cat /tmp/gsid.txt | grep -c "disabled") = 0 ]]; then
             	rm -R /tmp/gsid.txt 
@@ -1249,9 +1249,16 @@ fi
 
 fi
 
-echo "Copy kext patches"
+echo "Download kext patches"
 
-cp config-audio_cloverALC.plist /tmp/
+if [ $gBetaALC = 0 ]; then
+gDownloadLink="https://raw.githubusercontent.com/toleda/audio_cloverALC/master/config-audio_cloverALC.plist.zip"
+else
+gDownloadLink="https://raw.githubusercontent.com/toleda/audio_alc_test/master/config-audio_cloverALC.plist.zip"
+fi
+
+sudo curl -o "/tmp/config-audio_cloverALC.plist.zip" $gDownloadLink
+unzip -qu "/tmp/config-audio_cloverALC.plist.zip" -d "/tmp/"
 
 # add KernelAndKextPatches/KextsToPatch codec patches
 # remove existing audio patches
@@ -1330,7 +1337,7 @@ case $gCodec in
 # el capitan only, patch1=10
 # hd4600 hdmi audio only, patch1=11
 # hd4600 hdmi audio only, patch1=12
-# sierra only, patch1=13
+# high sierra/sierra only, patch1=13
 # new codecs
 891 ) patch1=14;;
 #1220 ) patch1=15;; # 0x1168
@@ -1365,7 +1372,7 @@ done
 
 case $gSysName in
 
-"Sierra"|"El Capitan" )
+"High Sierra"|"Sierra"|"El Capitan" )
 
 case $gCodecName in
 
@@ -1374,7 +1381,7 @@ case $gCodecName in
 
 case $gSysName in
 
-"Sierra" )
+"High Sierra"|"Sierra" )
 # codec patch out/credit pcpaul/Riley Freeman
 sudo /usr/libexec/PlistBuddy -c "Print ':KernelAndKextPatches:KextsToPatch:13}'" /tmp/config-audio_cloverALC.plist -x > "/tmp/ktp.plist"
 ;;
@@ -1458,6 +1465,7 @@ esac
 sudo rm -R /tmp/ktp.plist
 sudo rm -R /tmp/config.plist
 sudo rm -R /tmp/config-audio_cloverALC.plist
+sudo rm -R /tmp/config-audio_cloverALC.plist.zip
 
 # echo "config.plist patching finished."
 
@@ -1466,7 +1474,12 @@ if [ $gPikerAlphaALC = 1 ]; then
 # download AppleHDA8Series.sh to /tmp/
 echo "Download Piker-Alpha/AppleHDA8Series.sh"
 
-curl -o /tmp/AppleHDA8Series.sh https://raw.githubusercontent.com/Piker-Alpha/AppleHDA8Series.sh/master/AppleHDA8Series.sh
+curl -o /tmp/AppleHDA8Series.zip https://codeload.github.com/Piker-Alpha/AppleHDA8Series.sh/zip/master
+if [ -d /tmp/AppleHDA8Series ]; then
+    sudo rm -R /tmp/AppleHDA8Series
+fi
+unzip -qu /tmp/AppleHDA8Series.zip -d /tmp/
+mv /tmp/AppleHDA8Series.sh-master /tmp/AppleHDA8Series
 
 # remove installed AppleHDAxxx.kext
 if [ -d "$gLibraryDirectory/AppleHDA$gCodec.kext" ]; then
@@ -1475,16 +1488,17 @@ fi
 
 # run AppleHDA8Series.sh
 echo "Install $gLibraryDirectory/AppleHDA$gCodec.kext"
-chmod +x /tmp/AppleHDA8Series.sh
-sh /tmp/AppleHDA8Series.sh -a $gCodec -l $gAudioid -d $gLibraryDirectory
+chmod +x /tmp/AppleHDA8Series/AppleHDA8Series.sh
+sh /tmp/AppleHDA8Series/AppleHDA8Series.sh -a $gCodec -l $gAudioid -d $gLibraryDirectory
 
 # exit if error
 if [ "$?" != "0" ]; then
     echo Error: AppleHDA8Series.sh
     echo "No system files were changed"
     echo "To save a Copy of this Terminal session: Terminal/Shell/Export Text As ..."
-    sudo rm /tmp/AppleHDA8Series.sh
-    sudo rm /tmp/ALC$gCodec.zip
+    sudo rm -R /tmp/AppleHDA8Series.zip
+    sudo rm -R /tmp/AppleHDA8Series
+    sudo rm -R /tmp/ALC$gCodec.zip
     sudo rm -R /tmp/$gCodec
     sudo rm -R /tmp/ConfigData-ALC$gCodec.xml
     sudo rm -R /tmp/HDEF.txt
@@ -1492,8 +1506,9 @@ if [ "$?" != "0" ]; then
 fi
 
 # clean up
-sudo rm /tmp/AppleHDA8Series.sh
-sudo rm /tmp/ALC$gCodec.zip
+sudo rm -R /tmp/AppleHDA8Series.zip
+sudo rm -R /tmp/AppleHDA8Series
+sudo rm -R /tmp/ALC$gCodec.zip
 sudo rm -R /tmp/$gCodec
 sudo rm -R /tmp/ConfigData-ALC$gCodec.xml
 sudo rm -R /tmp/HDEF.txt
@@ -1506,8 +1521,15 @@ if [ -d "$gCloverDirectory/$gSysFolder" ]; then
     gSysFolder=kexts/Other
 fi
 
+if [ $gBetaALC = 0 ]; then
+    echo "Download config kext and install ..."
+    gDownloadLink="https://raw.githubusercontent.com/toleda/audio_cloverALC/master/realtekALC.kext.zip"
+else
+    gDownloadLink="https://raw.githubusercontent.com/toleda/audio_alc_test/master/realtekALC.kext.zip"
+fi
 
-cp -R realtekALC.kext /tmp/
+sudo curl -o "/tmp/realtekALC.kext.zip" $gDownloadLink
+unzip -qu "/tmp/realtekALC.kext.zip" -d "/tmp/"
 
 
 # install realtekALC.kext
@@ -1563,6 +1585,7 @@ esac
 
 esac
 
+sudo rm -R /tmp/realtekALC.kext.zip
 sudo rm -R /tmp/realtekALC.kext
 sudo rm -R /tmp/__MACOSX
 
@@ -1650,7 +1673,7 @@ fi    # end: if [ $gCloverALC = 1 ]
 if [ $gDebug = 0 ]; then
 case $gSysName in
 
-"Sierra"|"El Capitan"|"Yosemite" )
+"High Sierra"|"Sierra"|"El Capitan"|"Yosemite" )
 echo "Fix permissions ..."
 sudo chown -R root:wheel $gExtensionsDirectory/AppleHDA.kext
 echo "Kernel cache..."
