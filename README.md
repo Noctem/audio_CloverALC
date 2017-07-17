@@ -25,7 +25,7 @@ Clover version of Piker Alpha/AppleHDA8Series.sh. The script adds AppleHDA.kext 
 1. Open Terminal
 2. `git clone https://github.com/toleda/audio_CloverALC.git`
 3. `cd audio_CloverALC`
-4. `./audio_cloverALC-130.sh`
+4. `./audio_cloverALC.sh`
 
 **B. Requirements**
 

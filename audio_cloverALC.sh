@@ -1,6 +1,6 @@
 #!/bin/sh
 # Maintained by: toleda for: github.com/toleda/audio_cloverALC
-gFile="audio_cloverALC-130.sh"
+gFile="audio_cloverALC.sh"
 # gFile="audio_pikeralphaALC-120.command_vv0.1"
 # Credit: bcc9, RevoGirl, PikeRAlpha, SJ_UnderWater, RehabMan, TimeWalker75a, lisai9093
 #
