@@ -2,6 +2,69 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ACPI</key>
+	<dict>
+		<key>DSDT</key>
+		<dict>
+			<key>Debug</key>
+			<false/>
+			<key>Name</key>
+			<string>DSDT.aml</string>
+			<key>Patches</key>
+			<array>
+				<dict>
+					<key>Comment</key>
+					<string>100/200series-Rename HDAS to HDEF</string>
+					<key>Find</key>
+					<data>SERBUw==</data>
+					<key>Replace</key>
+					<data>SERFRg==</data>
+				</dict>
+			</array>
+			<key>ReuseFFFF</key>
+			<false/>
+		</dict>
+		<key>SSDT</key>
+		<dict>
+			<key>DropOem</key>
+			<false/>
+			<key>Generate</key>
+			<dict>
+				<key>PStates</key>
+				<false/>
+				<key>CStates</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
+	<key>Boot</key>
+	<dict>
+		<key>Log</key>
+		<false/>
+		<key>Timeout</key>
+		<integer>5</integer>
+		<key>XMPDetection</key>
+		<string>No</string>
+		<key>Secure</key>
+		<false/>
+	</dict>
+	<key>Devices</key>
+	<dict>
+		<key>Audio</key>
+		<dict>
+			<key>Inject</key>
+			<string>1</string>
+		</dict>
+		<key>USB</key>
+		<dict>
+			<key>Inject</key>
+			<false/>
+			<key>FixOwnership</key>
+			<false/>
+		</dict>
+		<key>UseIntelHDMI</key>
+		<false/>
+	</dict>
 	<key>GUI</key>
 	<dict>
 		<key>Mouse</key>
@@ -211,60 +274,6 @@
 				<string>200_Series_ Audio_Controller</string>
 			</dict>
 		</array>
-	</dict>
-	<key>ACPI</key>
-	<dict>
-		<key>DSDT</key>
-		<dict>
-			<key>Debug</key>
-			<false/>
-			<key>ReuseFFFF</key>
-			<false/>
-			<key>Name</key>
-			<string>DSDT.aml</string>
-			<key>DropOEM_DSM</key>
-			<false/>
-		</dict>
-		<key>SSDT</key>
-		<dict>
-			<key>DropOem</key>
-			<false/>
-			<key>Generate</key>
-			<dict>
-				<key>PStates</key>
-				<false/>
-				<key>CStates</key>
-				<false/>
-			</dict>
-		</dict>
-	</dict>
-	<key>Boot</key>
-	<dict>
-		<key>Log</key>
-		<false/>
-		<key>Timeout</key>
-		<integer>5</integer>
-		<key>XMPDetection</key>
-		<string>No</string>
-		<key>Secure</key>
-		<false/>
-	</dict>
-	<key>Devices</key>
-	<dict>
-		<key>Audio</key>
-		<dict>
-			<key>Inject</key>
-			<string>1</string>
-		</dict>
-		<key>USB</key>
-		<dict>
-			<key>Inject</key>
-			<false/>
-			<key>FixOwnership</key>
-			<false/>
-		</dict>
-		<key>UseIntelHDMI</key>
-		<false/>
 	</dict>
 	<key>SMBIOS</key>
 	<dict>
